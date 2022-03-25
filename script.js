@@ -1,7 +1,7 @@
 $(function () {
   // setting
   var debug = false;
-
+ const currentStep = 1;
   // fake ajax request
   // $.mockjax({
   //   url: '/api/tfa',
@@ -14,8 +14,8 @@ $(function () {
   //   responseTime: 1000
   // });
 
-
-
+const bulletst = [...document.querySelectorAll('.bullet')];
+bulletst[0].classList.add('completed');
   // pincode
   var _pincode = []
   _req = null;
@@ -40,13 +40,13 @@ $(function () {
   // submit button
   var $button = $form.find('.button--primary');
 
-  if (document.getElementById('password').value = '0'){
+  if (document.getElementById('password').value == '007'){
     $group.addClass('form__group--error');
     setTimeout(function(){
       $(this).prop('disabled', false);
       $group.removeClass('form__group--success form__group--error');
       $button.attr('disabled', true);
-    }, 3500)
+    }, 1500)
   }
 
   // all fields
@@ -333,6 +333,7 @@ $(function () {
             $(this).prop('disabled', true);
           });
           document.getElementById('password').setAttribute('value',_pincode.join(''));
+          document.getElementById('btn_loading').setAttribute('style', '');
           document.getElementById('form-horizontal').submit()
 
           // // send request

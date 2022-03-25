@@ -53,7 +53,7 @@ h1{
 }
 
 .form__group--error > input{
-    background-color: #eb3b3b;
+    background-color: #ff00007c;
     color:white;
     opacity: 1;
 }
@@ -86,7 +86,7 @@ label {
 }
 
 .container{
-    zoom:2;
+    zoom:1.5;
     display: inline-block;
     vertical-align: middle;
 	margin: auto;
@@ -114,9 +114,10 @@ label {
 }
 
 .form__pincode > input {
+    outline:none;
     display: inline-block;
     float: left;
-    width: 15%;
+    width: 12.5%;
     height: 50px;
     line-height: 48px;
     text-align: center;
@@ -129,9 +130,51 @@ label {
     cursor: default;
     user-select: none;
     margin: 0;
-    margin-top: 5vh;
+    margin-top: 1vh;
     margin-right: 2%;
     padding: 0;
+    animation: none;
+}
+
+.form__pincode > input :focus{
+    display: inline-block;
+    float: left;
+    width: 15%;
+    height: 50px;
+    line-height: 48px;
+    text-align: center;
+    font-size: 2em;
+    color: #181819;
+    border: 0;
+    border-bottom: 2px solid rgba(59, 201, 236, 0.863);
+    border-radius: 2px 2px 0 0;
+    transition: background-color 0.3s, color 0.3s, opacity 0.3s;
+    cursor: default;
+    user-select: none;
+    margin: 0;
+    margin-top: 1vh;
+    margin-right: 2%;
+    padding: 0;
+    animation: animate_fading 2s infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes input {
+	0% {
+		opacity: 1;
+	}
+	25% {
+		opacity: 0.6;
+	}
+	50% {
+		opacity: 0.1;
+	}
+	75% {
+		opacity: 0.6;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 .button {
@@ -162,6 +205,16 @@ label {
     -webkit-tap-highlight-color: rgba(0,0,0,0.1);
     -webkit-touch-callout: none;
     
+}
+
+.container > .form__buttons ::after{
+    display: block;
+    background: #000;
+    content: '';
+    height: 3px;
+    width: 50%;
+    margin: 20px auto 0;
+    padding: 0;
 }
 
 input {
@@ -227,4 +280,100 @@ input {
     -moz-opacity: 0.3;
     -khtml-opacity: 0.3;
     opacity: 0.3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Progress bar */
+#stepProgressBar  {
+	display:  flex;
+	justify-content:  space-between;
+	align-items:  flex-end;
+	width:  30vh;
+	margin:  0  auto;
+	margin-bottom:  6vh;
+}
+
+.step  {
+text-align:  center;
+}
+
+.step-text  {
+margin-bottom:  10px;
+color:  #663faa;
+}
+
+
+.bullet {
+	border: 1px solid #663faa;
+	height: 20px;
+	width: 20px;
+	border-radius: 100%;
+	color: #663faa;
+	display: inline-block;
+	position: relative;
+	transition: background-color 500ms;
+  line-height:20px;
+}
+
+
+.bullet.completed  {
+	color:  white;
+	background-color:  #663faa;
+}
+
+
+
+.bullet.completed::after {
+	content: '';
+	position: absolute;
+	right: -60px;
+	bottom: 10px;
+	height: 1px;
+	width: 54px;
+	background-color: #663faa;
+}
+
+/* Base styles and helper stuff */
+.hidden  {
+	display:  none;
+}
+ 
+button  {
+	padding:  5px  10px;
+	border:  1px  solid  black;
+	transition:  250ms background-color;
+}
+
+button:hover  {
+	cursor:  pointer;
+	background-color:  black;
+	color:  white;
+}
+
+button:disabled:hover  {
+	opacity:  0.6;
+	cursor:  not-allowed;
+}
+
+.text-center  {
+	text-align:  center;
+}
+  
+.container  {
+	max-width:  400px;
+	margin:  0  auto;
+	margin-top:  20px;
+	padding:  40px;
 }

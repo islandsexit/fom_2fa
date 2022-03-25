@@ -19,7 +19,7 @@
 <body>
   <div class="content">
     <div class="container">
-        <h1>Добавьте фото лица</h1>
+        <h1 id="h1_text">Добавьте фото лица</h1>
 <form action="/checkin" method="POST" enctype="multipart/form-data" class="form-inline md-form", id="uplForm">
   <!-- {% csrf_token %} -->
 
@@ -38,10 +38,10 @@
                   </div>
                   </div>
                   <div class="processing_bar" style='display:none;'></div>
-                  
+                  <div class="error_msg">{{no_face}}</div>
               </div>
           </div>
-          <div class="error_msg">{{no_face}}</div>
+          
           <!-- <div class="uploaded_file_view" id="uploaded_view"> -->
               <!-- <span class="file_remove">X</span> -->
 

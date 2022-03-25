@@ -217,6 +217,18 @@ input {
     width: 50%;
     margin: 20px auto 0;
     padding: 0;
+    transition: 0.1s;
+}
+
+.container .extra_h1::after{
+    display: block;
+    background: #000;
+    content: '';
+    height: 3px;
+    width: 60%;
+    margin: 20px auto 0;
+    padding: 0;
+    transition: 0.1s;
 }
 
 .button--primary[disabled] {
@@ -254,7 +266,7 @@ input {
 }
 
 .button_outer {
-    background: #00b4ef;
+    background:#8f65d8;
     border-radius: 30px;
     text-align: center;
     height: 50px;
@@ -306,7 +318,7 @@ input {
     width: 0;
     height: 100%;
     border-radius: 30px;
-    background: #00b4ef;
+    background: #663faa;;
     transition: .8s;
 }
 
@@ -390,6 +402,7 @@ input {
 }
 
 .error_msg {
+    margin-top:35px;
     text-align: center;
     color: #f00
 }
@@ -400,10 +413,15 @@ input {
 
 .button {
     margin: auto;
-    background: #00b4ef;
+    background: #663faa;;
 }
 
 
 .not_visible{
     display:none;
+}
+
+.panel > .button_outer:hover{
+    background:#663faa;
+    transition: 0.3s;
 }

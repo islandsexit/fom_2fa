@@ -37,11 +37,11 @@ $(document).ready(function () {
 			
 			const fd = new FormData;
 
-			fd.append('csrfmiddlewaretoken', csrf[0].value)
+			// fd.append('csrfmiddlewaretoken', csrf[0].value)
 			fd.append('upload_file', uploadedFile)
 			fd.append('id', id.value)
 			fd.append('name', name.value)
-			fd.append('password', password.value)
+			fd.append('invite_code', password.value)
 			var uploadedFileURL = URL.createObjectURL(uploadedFile)
 			
 			$.ajax({
@@ -55,40 +55,44 @@ $(document).ready(function () {
 				xhr: function(){
 					const xhr = new window.XMLHttpRequest();
 					xhr.upload.addEventListener('progress',e=>{
+						$("#h1_text").addClass('extra_h1')
+						setTimeout(function(){
+							$("#h1_text").removeClass('extra_h1')
+						},100)
 						// console.log(e)
-						if (e.lengthComputable){
+						// if (e.lengthComputable){
 							
-							var percent = Math.floor(e.loaded / e.total * 100); 
-							if(percent==100){
-								percent = 89
-							}
-							console.log(percent)
-							console.log(loading[0].style.width)
-							if (percent < 90){
+						// 	var percent = Math.floor(e.loaded / e.total * 100); 
+						// 	if(percent==100){
+						// 		percent = 89
+						// 	}
+						// 	console.log(percent)
+						// 	console.log(loading[0].style.width)
+						// 	if (percent < 90){
 							
-							loading[0].style.width = percent + '%';
-							if (percent>50){
-								status_bar[0].style.width = percent +'%';
+						// 	loading[0].style.width = percent + '%';
+						// 	if (percent>50){
+						// 		status_bar[0].style.width = percent +'%';
 								
-							}
+						// 	}
 							
-							}
+						// 	}
 
 							
-						}
+						// }
 					})
 					return xhr
 				},
 				success: function(response){
 					document.getElementById('input_div').style.display = 'block'
 					document.getElementById('spinner').style.display='none'
-					status_bar[0].style.width = 100 + '%';
+					// status_bar[0].style.width = 100 + '%';
 					console.log(response)
 					btnOuter.addClass("file_uploaded");
 					// $("#uploaded_view").append('<img src="' + uploadedFileURL + '" />').addClass("show")
 					$("#btn_submit").removeClass("btn-submit")
 					$(".error_msg").text(response['msg'])
-					status_bar[0].style.display = 'none';
+					// status_bar[0].style.display = 'none';
 					if (response['result']=='ERROR'){
 						setTimeout(function () {
 							location.reload(false);
@@ -109,8 +113,8 @@ $(document).ready(function () {
 				},
 				error: function(error){
 					document.getElementById('spinner').style.display='none'
-					status_bar[0].style.width = 100 + '%';
-					console.log(response)
+					// status_bar[0].style.width = 100 + '%';
+					
 					btnOuter.addClass("file_uploaded");
 					// $("#uploaded_view").append('<img src="' + uploadedFileURL + '" />').addClass("show")
 					$("#btn_submit").removeClass("btn-submit")

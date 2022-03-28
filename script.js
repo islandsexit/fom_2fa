@@ -13,9 +13,16 @@ $(function () {
   //   },
   //   responseTime: 1000
   // });
+  $('#first_step').addClass('active')
 
-const bulletst = [...document.querySelectorAll('.bullet')];
-bulletst[0].classList.add('completed');
+  $('.step').each(function(index, element) {
+    // element == this
+    $(element).not('.active').addClass('done');
+    $('.done').html('<i class="icon-ok"></i>');
+    if($(this).is('.active')) {
+      return false;
+    }
+  });    
   // pincode
   var _pincode = []
   _req = null;
@@ -308,6 +315,8 @@ bulletst[0].classList.add('completed');
     .inputmask({
       oncomplete: function () {
         // add sixth character
+        $('#first_step').removeClass('active')
+        $('#second_step').addClass('active')
         _pincode.push($(this).val());
         
         

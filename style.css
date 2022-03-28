@@ -14,13 +14,14 @@ html{
     display: flex;
     justify-content: center; /*Центрирование по горизонтали*/
     align-items: center;   
+    flex-direction: column;
 
 }
 
 body {
     
-    width:80%;
-    height:80%;
+    /* width:80%;
+    height:80%; */
     background-color: #663faa;
     /* background: -ms-linear-gradient(top left, #663faa 0%, #585fd5 100%);
     background: -webkit-linear-gradient(top left, #663faa, #585fd5);
@@ -78,7 +79,7 @@ h1{
 .form__pincode > label {
     display: block;
     text-align: center;
-    margin: 2vh 0;
+    margin: 3vh 0;
     
 }
 label {
@@ -86,7 +87,7 @@ label {
 }
 
 .container{
-    zoom:1.5;
+    zoom:1;
     display: inline-block;
     vertical-align: middle;
 	margin: auto;
@@ -259,6 +260,12 @@ input {
     .container {
         zoom:0;
     }
+    html{
+        width:130%;
+    }
+    body{
+
+    }
     }
 
 
@@ -296,84 +303,76 @@ input {
 
 
 /* Progress bar */
-#stepProgressBar  {
-	display:  flex;
-	justify-content:  space-between;
-	align-items:  flex-end;
-	width:  30vh;
-	margin:  0  auto;
-	margin-bottom:  6vh;
-}
-
-.step  {
-text-align:  center;
-}
-
-.step-text  {
-margin-bottom:  10px;
-color:  #663faa;
-}
-
-
-.bullet {
-	border: 1px solid #663faa;
-	height: 20px;
-	width: 20px;
-	border-radius: 100%;
-	color: #663faa;
-	display: inline-block;
-	position: relative;
-	transition: background-color 500ms;
-  line-height:20px;
-}
-
-
-.bullet.completed  {
-	color:  white;
-	background-color:  #663faa;
-}
 
 
 
-.bullet.completed::after {
-	content: '';
-	position: absolute;
-	right: -60px;
-	bottom: 10px;
-	height: 1px;
-	width: 54px;
-	background-color: #663faa;
-}
-
-/* Base styles and helper stuff */
-.hidden  {
-	display:  none;
-}
- 
-button  {
-	padding:  5px  10px;
-	border:  1px  solid  black;
-	transition:  250ms background-color;
-}
-
-button:hover  {
-	cursor:  pointer;
-	background-color:  black;
-	color:  white;
-}
-
-button:disabled:hover  {
-	opacity:  0.6;
-	cursor:  not-allowed;
-}
-
-.text-center  {
-	text-align:  center;
-}
+#steps {
+    
+    margin: 50px auto; 
+    display:flex;
+    align-items: center;
+  }
   
-.container  {
-	max-width:  400px;
-	margin:  0  auto;
-	margin-top:  20px;
-	padding:  40px;
-}
+  .step {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    display: inline-block;
+    border: 4px solid;
+    border-color: transparent;
+    border-radius: 50%;
+    
+    color: #CDD0DA;
+    font-weight: 600;
+    text-align: center;
+    line-height: 30px;
+  }
+  .step:first-child {
+    line-height: 35px;
+  }
+  .step:nth-child(n+2) {
+    margin: 0 0 0 100px;
+    /* transform: translate(0, -4px); */
+  }
+  .step:nth-child(n+2):before {
+    width: 75px;
+    height: 3px;
+    display: block;
+    background-color: white;
+    transform: translate(-95px, 21px);
+    content: '';  
+  }
+  .step:after {
+    width: 150px;
+    display: block;
+    transform: translate(-55px, 3px);
+    
+    color: #CDD0DA;
+    content: attr(data-desc);
+    font-weight: 400;
+    font-size: 13px;
+  }
+  .step:first-child:after {
+    transform: translate(-55px, -1px);  
+  }
+  .step.active {
+    border-color: #70C1FF;
+    
+    color: #70C1FF;
+  }
+  .step.active:before {
+    background: linear-gradient(to right, #58BB58 0%,
+                                          #70C1FF 100%);
+  }
+  .step.active:after {
+    color: #70C1FF;  
+  }
+  .step.done {
+    background-color: #58BB58;
+    border-color: #58BB58;
+    
+    color: white;
+  }
+  .step.done:before {
+    background-color: #58BB58;  
+  }

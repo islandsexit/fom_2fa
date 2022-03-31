@@ -5,19 +5,33 @@ $(document).ready(function () {
 
 	// const progressBox = document.getElementById('progress-box')
 	const btn_submit = document.getElementById('btn_submit')
-	const csrf = document.getElementsByName('csrfmiddlewaretoken')
+	// const csrf = document.getElementsByName('csrfmiddlewaretoken')
+	// console.log(csrf[0].value)
 	const id = document.getElementById('id')
 	const name = document.getElementById('name')
 	const password = document.getElementById('password')
 	const uploadForm = document.getElementById('uplForm')
 	// const bar = document.getElementsByClassName('processing_bar')
-	// const error_msg = document.getElementsByClassName('error_msg')
+	const error_msg = document.getElementsByClassName('error_msg')
 	// const status_bar = document.getElementsByClassName('status_uploading')
 	document.getElementById('spinner').style.display = 'none'
 	// status_bar[0].style.width = 50+'%';
 	// console.log(status_bar[0].style)
 	var btnUpload = $("#upload_file"),
 		btnOuter = $(".button_outer");
+
+	$('#second_step').addClass('active')
+
+    $('.step').each(function(index, element) {
+      // element == this
+      $(element).not('.active').addClass('done');
+      $('.done').html('<i class="icon-ok"></i>');
+      if($(this).is('.active')) {
+        return false;
+      }
+    });
+
+
 	btnUpload.on("change", function (e) {
 		console.log("if")
 		var ext = btnUpload.val().split('.').pop().toLowerCase();
@@ -42,7 +56,7 @@ $(document).ready(function () {
 			fd.append('id', id.value)
 			fd.append('name', name.value)
 			fd.append('invite_code', password.value)
-			var uploadedFileURL = URL.createObjectURL(uploadedFile)
+			//var uploadedFileURL = URL.createObjectURL(uploadedFile)
 			
 			$.ajax({
 				type:'POST',
@@ -88,9 +102,13 @@ $(document).ready(function () {
 					document.getElementById('spinner').style.display='none'
 					// status_bar[0].style.width = 100 + '%';
 					console.log(response)
-					btnOuter.addClass("file_uploaded");
+					
+
+					
+					
+
 					// $("#uploaded_view").append('<img src="' + uploadedFileURL + '" />').addClass("show")
-					$("#btn_submit").removeClass("btn-submit")
+					
 					$(".error_msg").text(response['msg'])
 					// status_bar[0].style.display = 'none';
 					if (response['result']=='ERROR'){
@@ -101,8 +119,19 @@ $(document).ready(function () {
 					
 					}
 					else{
+						// $("#btn_submit").removeClass("btn-submit")
+						btnOuter.addClass("file_uploaded");
 						error_msg[0].style.color='green'
-						$(".error_msg").text(response['msg'])
+						$(".error_msg").text('Фото успешно добавлено')
+						$('#second_step').removeClass('active')
+					$('.step').each(function(index, element) {
+						// element == this
+						$(element).not('.active').addClass('done');
+						$('.done').html('<i class="icon-ok"></i>');
+						if($(this).is('.active')) {
+						  return false;
+						}
+					  });
 						// setTimeout(function () {
 						// 	window.location('/checkin');
 						// 	 }, 2000);
@@ -112,16 +141,17 @@ $(document).ready(function () {
 					
 				},
 				error: function(error){
+					document.getElementById('input_div').style.display = 'block'
 					document.getElementById('spinner').style.display='none'
 					// status_bar[0].style.width = 100 + '%';
 					
-					btnOuter.addClass("file_uploaded");
+					// btnOuter.addClass("file_uploaded");
 					// $("#uploaded_view").append('<img src="' + uploadedFileURL + '" />').addClass("show")
-					$("#btn_submit").removeClass("btn-submit")
+					// $("#btn_submit").removeClass("btn-submit")
 					$(".error_msg").text('Ошибка отпраки фото на сервер')
-					setTimeout(function () {
-						location.reload(false);
-						 }, 3000);
+					// setTimeout(function () {
+					// 	location.reload(false);
+					// 	 }, 3000);
 				},
 				cache: false,
 				contentType:false,
